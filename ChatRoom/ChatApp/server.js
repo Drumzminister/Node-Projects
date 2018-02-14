@@ -47,13 +47,17 @@ function serveStatic(response, cache, absPath){
 
 // App Server
 var server = http.createServer( function (request, response){
+    // Create HTTP server using anonymous function to define per-request behaviour
    var filePath = false;
    if(request.url == "/"){
+    //Determine HTML file to be served by default
        filePath = "public/index.html";
    }else{
+    //    Translate URL path to relative path
        filePath = "public/" + request.url;
    }
    var absPath = "./" + filePath;
+   //Serve Static File
    serveStatic(response, cache, absPath);
 });
 server.listen(3000, function(){
